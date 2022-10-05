@@ -28,19 +28,23 @@ import com.example.leadforce.model.ActivityModel;
 import com.example.leadforce.model.SharedModel;
 import com.example.leadforce.ui.addnewactivity.AddActivityFragment;
 import com.example.leadforce.ui.plan.plantabs.TodayFragment;
+import com.example.leadforce.viewmodel.SharedViewModel;
 import com.google.android.material.tabs.TabLayout;
 
 public class PlanFragment extends Fragment implements FragmentCallBack {
 
 
-   public PlanFragment(){};
-   private SharedModel model;
+    public PlanFragment() {
+    }
+
+    ;
+    private SharedViewModel viewModel;
 
     private FragmentPlanBinding binding;
     TodayFragment todayFragment;
     CalendarClickInterface clickInterface;
 
-    int count=0;
+    int count = 0;
 
     public PlanFragment setClickInterface(CalendarClickInterface clickInterface) {
         this.clickInterface = clickInterface;
@@ -74,7 +78,7 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
         todayFragment = new TodayFragment(this);
         View root = binding.getRoot();
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        PlanViewPagerAdapter adapter = new PlanViewPagerAdapter(fragmentManager , getLifecycle(),this);
+        PlanViewPagerAdapter adapter = new PlanViewPagerAdapter(fragmentManager, getLifecycle(), this);
         ViewPager2 viewPager = binding.viewPager;
         viewPager.setAdapter(adapter);
 
@@ -110,7 +114,7 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
             public void onFocusChange(View arg0, boolean hasfocus) {
                 if (hasfocus) {
 
-                    Toast.makeText(getContext(), "shared model"+model.getText(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "shared model" + viewModel.getText(), Toast.LENGTH_SHORT).show();
                     Log.e("TAG", "e1 focused");
                     binding.editTextBackgroud.setBackgroundResource(R.drawable.blue_rounded_dashes);
                 } else {
@@ -143,12 +147,12 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        model = new ViewModelProvider(requireParentFragment())
-                .get(SharedModel.class);
-        model.getText().observe(getActivity(), item->{
-             binding.tvAct.setText(item);
+        viewModel = new ViewModelProvider(requireActivity())
+                .get(SharedViewModel.class);
+        viewModel.getText().observe(getViewLifecycleOwner(), item -> {
+            binding.tvAct.setText(item);
         });
-        
+
     }
 //
 //
@@ -175,16 +179,16 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
 
     @Override
     public void onClick(boolean isCheck) {
-        if(isCheck==true){
+
+        if (isCheck == true) {
             count++;
             binding.tvActivityCount.setVisibility(View.VISIBLE);
-            binding.tvActivityCount.setText(String.valueOf(count)+" /");
-        }
-        else{
+            binding.tvActivityCount.setText(String.valueOf(count) + " /");
+        } else {
             count--;
             binding.tvActivityCount.setVisibility(View.VISIBLE);
-            binding.tvActivityCount.setText(String.valueOf(count)+" /");
-            if(count==0){
+            binding.tvActivityCount.setText(String.valueOf(count) + " /");
+            if (count == 0) {
                 binding.tvActivityCount.setVisibility(View.GONE);
             }
         }

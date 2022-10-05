@@ -44,4 +44,8 @@ public class HomeModel {
         this.checkBoxIcon = checkBoxIcon;
         this.flag = flag;
     }
+
+    public ActivityModel toActivityModel(){
+        return  new ActivityModel()
+    }
 }

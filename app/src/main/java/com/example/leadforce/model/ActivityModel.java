@@ -5,136 +5,74 @@ import android.os.Parcelable;
 
 public class ActivityModel implements Parcelable {
 
-   String serviceName;
-   int serviceIcon;
-   String date, time;
-   String personName;
-   int personIcon;
-   String dealName;
-   int dealIcon;
-   String managerName;
-   int managerIocn;
-  public  ActivityModel(){}
-    public ActivityModel(Parcel in) {
-        serviceName = in.readString();
-        serviceIcon = in.readInt();
-        date = in.readString();
-        time = in.readString();
-        personName = in.readString();
-        personIcon = in.readInt();
-        dealName = in.readString();
-        dealIcon = in.readInt();
-        managerName = in.readString();
-        managerIocn = in.readInt();
+    private String serviceName;
+    //    private int serviceIcon;
+    private String date,
+            time;
+    private String personName;
+    //    private int personIcon;
+    private String dealName;
+    //    private int dealIcon;
+    private String managerName;
+//    private int managerIocn;
+
+    public ActivityModel() {
     }
-
-    public static final Creator<ActivityModel> CREATOR = new Creator<ActivityModel>() {
-        @Override
-        public ActivityModel createFromParcel(Parcel in) {
-            return new ActivityModel(in);
-        }
-
-        @Override
-        public ActivityModel[] newArray(int size) {
-            return new ActivityModel[size];
-        }
-    };
 
     public String getServiceName() {
         return serviceName;
     }
 
-    public int getServiceIcon() {
-        return serviceIcon;
+    public ActivityModel setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+        return this;
     }
 
     public String getDate() {
         return date;
     }
 
+    public ActivityModel setDate(String date) {
+        this.date = date;
+        return this;
+    }
+
     public String getTime() {
         return time;
+    }
+
+    public ActivityModel setTime(String time) {
+        this.time = time;
+        return this;
     }
 
     public String getPersonName() {
         return personName;
     }
 
-    public int getPersonIcon() {
-        return personIcon;
+    public ActivityModel setPersonName(String personName) {
+        this.personName = personName;
+        return this;
     }
 
     public String getDealName() {
         return dealName;
     }
 
-    public int getDealIcon() {
-        return dealIcon;
+    public ActivityModel setDealName(String dealName) {
+        this.dealName = dealName;
+        return this;
     }
 
     public String getManagerName() {
         return managerName;
     }
 
-    public int getManagerIocn() {
-        return managerIocn;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public void setServiceIcon(int serviceIcon) {
-        this.serviceIcon = serviceIcon;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setPersonName(String personName) {
-        this.personName = personName;
-    }
-
-    public void setPersonIcon(int personIcon) {
-        this.personIcon = personIcon;
-    }
-
-    public void setDealName(String dealName) {
-        this.dealName = dealName;
-    }
-
-    public void setDealIcon(int dealIcon) {
-        this.dealIcon = dealIcon;
-    }
-
-    public void setManagerName(String managerName) {
+    public ActivityModel setManagerName(String managerName) {
         this.managerName = managerName;
+        return this;
     }
 
-    public void setManagerIocn(int managerIocn) {
-        this.managerIocn = managerIocn;
-    }
-
-    @Override
-    public String toString() {
-        return "ActivityModel{" +
-                "serviceName='" + serviceName + '\'' +
-                ", serviceIcon=" + serviceIcon +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", personName='" + personName + '\'' +
-                ", personIcon=" + personIcon +
-                ", dealName='" + dealName + '\'' +
-                ", dealIcon=" + dealIcon +
-                ", managerName='" + managerName + '\'' +
-                ", managerIocn=" + managerIocn +
-                '}';
-    }
 
     @Override
     public int describeContents() {
@@ -142,16 +80,42 @@ public class ActivityModel implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(serviceName);
-        parcel.writeInt(serviceIcon);
-        parcel.writeString(date);
-        parcel.writeString(time);
-        parcel.writeString(personName);
-        parcel.writeInt(personIcon);
-        parcel.writeString(dealName);
-        parcel.writeInt(dealIcon);
-        parcel.writeString(managerName);
-        parcel.writeInt(managerIocn);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.serviceName);
+        dest.writeString(this.date);
+        dest.writeString(this.time);
+        dest.writeString(this.personName);
+        dest.writeString(this.dealName);
+        dest.writeString(this.managerName);
     }
+
+    public void readFromParcel(Parcel source) {
+        this.serviceName = source.readString();
+        this.date = source.readString();
+        this.time = source.readString();
+        this.personName = source.readString();
+        this.dealName = source.readString();
+        this.managerName = source.readString();
+    }
+
+    protected ActivityModel(Parcel in) {
+        this.serviceName = in.readString();
+        this.date = in.readString();
+        this.time = in.readString();
+        this.personName = in.readString();
+        this.dealName = in.readString();
+        this.managerName = in.readString();
+    }
+
+    public static final Creator<ActivityModel> CREATOR = new Creator<ActivityModel>() {
+        @Override
+        public ActivityModel createFromParcel(Parcel source) {
+            return new ActivityModel(source);
+        }
+
+        @Override
+        public ActivityModel[] newArray(int size) {
+            return new ActivityModel[size];
+        }
+    };
 }
