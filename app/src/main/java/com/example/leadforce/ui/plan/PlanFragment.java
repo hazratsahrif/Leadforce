@@ -26,10 +26,13 @@ import com.example.leadforce.interfaces.CalendarClickInterface;
 import com.example.leadforce.interfaces.FragmentCallBack;
 import com.example.leadforce.model.ActivityModel;
 import com.example.leadforce.model.SharedModel;
+import com.example.leadforce.model.ToggleEvent;
 import com.example.leadforce.ui.addnewactivity.AddActivityFragment;
 import com.example.leadforce.ui.plan.plantabs.TodayFragment;
 import com.example.leadforce.viewmodel.SharedViewModel;
 import com.google.android.material.tabs.TabLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class PlanFragment extends Fragment implements FragmentCallBack {
 
@@ -43,7 +46,7 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
     private FragmentPlanBinding binding;
     TodayFragment todayFragment;
     CalendarClickInterface clickInterface;
-
+    boolean toggle = false;
     int count = 0;
 
     public PlanFragment setClickInterface(CalendarClickInterface clickInterface) {
@@ -130,17 +133,19 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
                 Navigation.findNavController(view).navigate(R.id.action_navigation_plan_to_addActivityFragment);
             }
         });
-//        binding.btnCal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//                if(clickInterface!=null){
+        binding.btnCal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                toggle = !toggle;
+//                EventBus.getDefault().post(new ToggleEvent(toggle));
+                viewModel.toggleCal();
+
+//                if (clickInterface != null) {
 //                    Toast.makeText(getContext(), "not null", Toast.LENGTH_SHORT).show();
 //                    clickInterface.onCalendarClick(true);
 //                }
-//            }
-//        });
+            }
+        });
         return root;
     }
 

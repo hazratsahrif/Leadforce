@@ -10,6 +10,8 @@ public class SharedViewModel extends ViewModel {
     private MutableLiveData<String> text = new MutableLiveData<>();
     private MutableLiveData<Integer> isCheck = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> calToggle = new MutableLiveData<Boolean>(false);
+
     private MutableLiveData<ActivityModel> activityModelMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Integer> getIsCheck() {
@@ -34,5 +36,13 @@ public class SharedViewModel extends ViewModel {
 
     public LiveData<String> getText() {
         return text;
+    }
+
+    public LiveData<Boolean> getCalToggle() {
+        return calToggle;
+    }
+
+    public void toggleCal() {
+        this.calToggle.setValue(Boolean.FALSE.equals(calToggle.getValue()));
     }
 }

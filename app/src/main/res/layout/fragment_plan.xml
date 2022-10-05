@@ -169,24 +169,34 @@
                 android:background="@drawable/circle_dashes"
                 android:layout_height="30dp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    app:cardCornerRadius="100dp"
-                    android:id="@+id/cvBtn"
+                <ImageButton
+                    android:id="@+id/btnCal"
+                    android:layout_width="20dp"
+                    android:layout_margin="3dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_calender"
+                    android:layout_gravity="center"
+                    android:layout_height="20dp" />
 
-                    android:layout_margin="1dp"
 
-                    app:cardBackgroundColor="@color/white"
-                    android:layout_height="match_parent">
-                    <ImageButton
-                        android:id="@+id/btnCal"
-                        android:layout_width="20dp"
-                        android:layout_margin="3dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_calender"
-                        android:layout_gravity="center"
-                        android:layout_height="20dp" />
-                </com.google.android.material.card.MaterialCardView>
+                <!--                <com.google.android.material.card.MaterialCardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    app:cardCornerRadius="100dp"-->
+<!--                    android:id="@+id/cvBtn"-->
+
+<!--                    android:layout_margin="1dp"-->
+
+<!--                    app:cardBackgroundColor="@color/white"-->
+<!--                    android:layout_height="match_parent">-->
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/btnCal"-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:layout_margin="3dp"-->
+<!--                        android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                        android:src="@drawable/ic_calender"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_height="20dp" />-->
+<!--                </com.google.android.material.card.MaterialCardView>-->
 
             </LinearLayout>
         </RelativeLayout>

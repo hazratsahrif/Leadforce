@@ -11,6 +11,8 @@
         android:label="@string/plan"
         tools:layout="@layout/fragment_plan" >
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_navigation_plan_to_addActivityFragment"
             app:destination="@id/addActivityFragment" />
 
@@ -44,6 +46,8 @@
         tools:layout="@layout/fragment_add_activity" >
 
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_addActivityFragment_to_navigation_plan"
             app:destination="@id/navigation_plan" />
         <argument
@@ -57,6 +61,8 @@
         android:label="signup_fragment"
         tools:layout="@layout/signup_fragment" >
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_signUpFragment2_to_forgotPasswordFragment3"
             app:destination="@id/forgotPasswordFragment3" />
     </fragment>
@@ -66,9 +72,13 @@
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" >
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_forgotPasswordFragment3_to_signUpFragment2"
             app:destination="@id/signUpFragment2" />
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_forgotPasswordFragment3_to_resetPassword"
             app:destination="@id/resetPassword" />
     </fragment>
@@ -79,6 +89,8 @@
         tools:layout="@layout/fragment_reset_password" >
 
         <action
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
             android:id="@+id/action_resetPassword_to_signUpFragment2"
             app:destination="@id/signUpFragment2" />
     </fragment>
