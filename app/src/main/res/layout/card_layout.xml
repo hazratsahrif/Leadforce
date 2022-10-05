@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+
+
+
+    app:cardBackgroundColor="@color/white"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/cardView"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="8dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right"
+
+            app:tint="#4D4D4D" />
+
+
+
+        <View
+            android:layout_width="3dp"
+            android:background="@color/blueColor"
+            android:id="@+id/divider"
+            android:layout_height="133dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:layout_marginLeft="24dp"
+
+            android:layout_toRightOf="@id/divider"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/divider"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:buttonTint="#7E0056FE"
+                    android:checked="false"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text=""
+                    android:textColor="@color/blueColor"
+
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="right"
+                    android:text="04:30 P.M"
+                    android:textColor="@color/black_color"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginVertical="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="9dp"
+
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="12dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="K Venkatakrishnan"
+                    android:textColor="@color/black_color"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/green_rounded_dashes"
+                    android:drawableLeft="@drawable/ic_call"
+                    android:drawablePadding="4dp"
+                    android:drawableTint="@color/green_color"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="Call"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_color"
+                    android:textSize="11sp"
+
+
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="2dp"
+
+                android:drawableStart="@drawable/ic_hands"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Keertana facility management service deal"
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="9dp"
+                android:layout_marginVertical="5dp"
+
+                android:drawableStart="@drawable/ic_building"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="Keertana facility management service"
+                android:textColor="@color/black_color"
+                android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/ivIcon"
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="8dp"
+                    android:src="@drawable/ic_baseline_access_time_filled"
+                    app:tint="#FE0000" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

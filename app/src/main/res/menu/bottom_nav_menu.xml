@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_plan"
+        android:icon="@drawable/plan"
+        android:title="@string/plan" />
+
+    <item
+        android:id="@+id/navigation_deal"
+        android:icon="@drawable/hands_tab"
+        android:title="@string/deal" />
+
+    <item
+        android:id="@+id/navigation_activity"
+        android:icon="@drawable/ic_calender"
+        android:title="@string/activity" />
+    <item
+        android:id="@+id/infoFragment"
+        android:icon="@drawable/info"
+        android:title="@string/info" />
+    <item
+        android:id="@+id/moreFragment"
+        android:icon="@drawable/ic_baseline_more_horiz_24"
+        android:title="@string/more" />
+
+</menu>

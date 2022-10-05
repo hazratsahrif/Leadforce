@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="30dp"
+
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".ui.auth.SignUpFragment">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+
+            />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:orientation="horizontal"
+           android:weightSum="2"
+
+
+           android:background="@drawable/dashesbackground"
+           android:layout_height="46dp">
+
+           <EditText
+               android:layout_width="wrap_content"
+               android:layout_weight="2"
+               android:layout_height="match_parent"
+               android:hint="Domain name"
+               android:textSize="14sp"
+
+               android:fontFamily="@font/inter_medium"
+
+               android:layout_gravity="center_vertical"
+               android:background="@null"
+               android:backgroundTint="@null"
+               android:layout_marginHorizontal="10dp"
+
+
+               />
+
+
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_weight="1"
+               android:layout_marginVertical="2dp"
+               android:layout_marginRight="2.7dp"
+               android:text=".leadforce.mobi"
+               android:textSize="14sp"
+               android:fontFamily="@font/inter_light"
+
+               android:paddingHorizontal="10dp"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:textStyle="bold"
+               android:textColor="@color/textBlackColor"
+               android:background="#DFE2E8"
+               android:layout_height="match_parent">
+
+           </TextView>
+
+       </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            app:strokeWidth="1dp"
+
+            app:strokeColor="@color/strokColor"
+            android:layout_height="46dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="Email"
+            android:fontFamily="@font/inter_medium"
+            android:drawablePadding="10dp"
+            android:textSize="14sp"
+            android:textColorHint="@color/hintColor"
+            android:drawableTint="@color/blueColor"
+            android:drawableLeft="@drawable/mail"
+            android:layout_gravity="center_vertical"
+
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:layout_marginHorizontal="10dp"
+
+
+            />
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            app:strokeWidth="1dp"
+
+            app:strokeColor="@color/strokColor"
+            android:layout_height="46dp">
+ <RelativeLayout
+     android:layout_width="match_parent"
+     android:layout_marginHorizontal="8dp"
+
+     android:layout_gravity="center_vertical"
+     android:layout_height="wrap_content">
+
+     <EditText
+         android:id="@+id/etPassword"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_gravity="center_vertical"
+         android:layout_weight="1"
+         android:background="@null"
+         android:backgroundTint="@null"
+         android:drawableStart="@drawable/ic_lock_1"
+
+         android:drawablePadding="10dp"
+         android:fontFamily="@font/inter_medium"
+         android:hint="Password"
+         android:inputType="textPassword"
+         android:textColorHint="@color/hintColor"
+         android:textSize="14sp"
+
+
+         />
+
+     <ImageButton
+         android:id="@+id/btnHide"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignRight="@id/etPassword"
+         android:layout_alignParentRight="true"
+         android:background="?actionBarItemBackground"
+         android:src="@drawable/open_eye" />
+ </RelativeLayout>
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:text="Forgot Password?"
+            android:textSize="14sp"
+            android:id="@+id/tvPassword"
+
+            android:layout_marginTop="10dp"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:textColor="@color/blueColor"
+            android:layout_height="match_parent"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:id="@+id/btnSingIn"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="16sp"
+            android:layout_marginTop="30dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blueColor"
+
+            />
+
+    </LinearLayout>
+
+
+
+</ScrollView>

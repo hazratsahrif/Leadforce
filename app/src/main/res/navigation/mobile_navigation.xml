@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_plan">
+
+    <fragment
+        android:id="@+id/navigation_plan"
+        android:name="com.example.leadforce.ui.plan.PlanFragment"
+        android:label="@string/plan"
+        tools:layout="@layout/fragment_plan" >
+        <action
+            android:id="@+id/action_navigation_plan_to_addActivityFragment"
+            app:destination="@id/addActivityFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_deal"
+        android:name="com.example.leadforce.ui.deal.DealFragment"
+        android:label="@string/deal"
+        tools:layout="@layout/fragment_deal" />
+
+    <fragment
+        android:id="@+id/navigation_activity"
+        android:name="com.example.leadforce.ui.activity.ActivityFragment"
+        android:label="@string/activity"
+        tools:layout="@layout/fragment_activity" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.leadforce.ui.more.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.leadforce.ui.info.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/addActivityFragment"
+        android:name="com.example.leadforce.ui.addnewactivity.AddActivityFragment"
+        android:label="fragment_add_activity"
+        tools:layout="@layout/fragment_add_activity" >
+
+        <action
+            android:id="@+id/action_addActivityFragment_to_navigation_plan"
+            app:destination="@id/navigation_plan" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="com.example.leadforce.ui.auth.SignUpFragment"
+        android:label="signup_fragment"
+        tools:layout="@layout/signup_fragment" >
+        <action
+            android:id="@+id/action_signUpFragment2_to_forgotPasswordFragment3"
+            app:destination="@id/forgotPasswordFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment3"
+        android:name="com.example.leadforce.ui.auth.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment3_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+        <action
+            android:id="@+id/action_forgotPasswordFragment3_to_resetPassword"
+            app:destination="@id/resetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPassword"
+        android:name="com.example.leadforce.ui.auth.ResetPassword"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+
+        <action
+            android:id="@+id/action_resetPassword_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
+
+</navigation>

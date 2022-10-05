@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:background="@color/layout_background_color"
+    android:layout_height="match_parent"
+
+    tools:context=".ui.plan.PlanFragment">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:elevation="1dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/white"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_simple_logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:id="@+id/editTextBackgroud"
+                    android:layout_marginHorizontal="16dp"
+
+                    android:background="@drawable/rounded_dashes"
+
+                    >
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+
+                        android:textSize="12sp"
+                        android:hint="Search Leadforce.."
+                        android:drawablePadding="8dp"
+                        android:textColorHint="@color/gery_dash_color"
+                        android:drawableStart="@drawable/ic_baseline_search_24"
+
+                        android:backgroundTint="@color/white"
+                        android:id="@+id/etSearch"
+                        />
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <RelativeLayout
+        android:id="@+id/toolbar2"
+        android:layout_marginVertical="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintLeft_toRightOf="parent">
+
+
+        <LinearLayout
+            android:layout_marginVertical="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintLeft_toRightOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 /"
+                android:id="@+id/tvActivityCount"
+                android:visibility="gone"
+                android:textSize="14sp"
+                android:textColor="@color/green_color"
+                android:fontFamily="@font/inter_semibold"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 4"
+
+                android:textSize="14sp"
+                android:textColor="@color/blueColor"
+                android:fontFamily="@font/inter_semibold"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activities"
+                android:id="@+id/tvAct"
+                android:layout_marginHorizontal="8dp"
+
+
+                android:textSize="14sp"
+                android:textColor="@color/black_color"
+                android:fontFamily="@font/inter_semibold"
+
+                />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="40dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="15dp"
+                app:cardBackgroundColor="@color/red"
+                android:layout_alignParentRight="true"
+
+                app:cardCornerRadius="100dp"
+                android:layout_height="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="4"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+
+
+                android:background="@drawable/circle_dashes"
+                android:layout_height="30dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="100dp"
+                    android:id="@+id/cvBtn"
+
+                    android:layout_margin="1dp"
+
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_height="match_parent">
+                    <ImageButton
+                        android:id="@+id/btnCal"
+                        android:layout_width="20dp"
+                        android:layout_margin="3dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_calender"
+                        android:layout_gravity="center"
+                        android:layout_height="20dp" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/layout"
+            android:background="@drawable/green_rounded_dashes"
+            android:layout_height="33dp">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:id="@+id/btnAdd"
+                android:layout_height="wrap_content"
+                app:cornerRadius="100dp"
+
+                android:drawableLeft="@drawable/ic_add"
+                android:text="Quick Add"
+                android:textColor="@color/green_color"
+                android:textSize="11sp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/inter_medium"
+                android:background="@android:color/transparent"
+                android:shadowColor="@android:color/transparent"
+
+
+
+
+
+                />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout"
+            android:background="@color/gery_dash_color"
+            android:layout_marginVertical="15dp"
+
+
+            />
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:id="@+id/tabLayout"
+        app:tabTextAppearance="@style/customfontstyle"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabBackground="@color/grey"
+        app:tabIndicatorGravity="stretch"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorAnimationMode="fade"
+        android:layout_marginHorizontal="16dp"
+        app:tabIndicator="@drawable/tab_background"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"/>
+
+
+
+
+</LinearLayout>
