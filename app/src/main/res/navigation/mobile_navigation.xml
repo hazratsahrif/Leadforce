@@ -47,7 +47,7 @@
             android:id="@+id/action_addActivityFragment_to_navigation_plan"
             app:destination="@id/navigation_plan" />
         <argument
-            android:name="activityModel"
+            android:name="actionModel"
             app:argType="com.example.leadforce.model.ActivityModel"
             app:nullable="true" />
     </fragment>

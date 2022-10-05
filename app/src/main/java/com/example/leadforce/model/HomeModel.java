@@ -45,7 +45,5 @@ public class HomeModel {
         this.flag = flag;
     }
 
-    public ActivityModel toActivityModel(){
-        return  new ActivityModel()
-    }
+
 }

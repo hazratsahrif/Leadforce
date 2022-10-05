@@ -3,7 +3,9 @@ package com.example.leadforce.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ActivityModelV2 implements Parcelable {
+import java.io.Serializable;
+
+public class ActivityModelV2 implements Parcelable, Serializable {
 
     String serviceName;
     int serviceIcon;

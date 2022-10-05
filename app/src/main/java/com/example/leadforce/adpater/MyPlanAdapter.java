@@ -17,13 +17,14 @@ import com.example.leadforce.databinding.CardLayoutBinding;
 import com.example.leadforce.interfaces.CalendarClickInterface;
 import com.example.leadforce.interfaces.CheckBoxListnerInterface;
 import com.example.leadforce.interfaces.FragmentCallBack;
+import com.example.leadforce.model.ActivityModel;
 import com.example.leadforce.model.HomeModel;
 import com.example.leadforce.ui.plan.PlanFragment;
 
 import java.util.ArrayList;
 
 public class MyPlanAdapter extends RecyclerView.Adapter<MyPlanAdapter.MyViewHolder> implements CalendarClickInterface {
-     ArrayList<HomeModel> arrayList;
+     ArrayList<ActivityModel> arrayList;
      Context context;
      PlanFragment planFragment= new PlanFragment();
      CheckBoxListnerInterface checkBoxListnerInterface;
@@ -43,7 +44,7 @@ public class MyPlanAdapter extends RecyclerView.Adapter<MyPlanAdapter.MyViewHold
     ColorStateList myList = new ColorStateList(states, colors);
 
 
-    public MyPlanAdapter(ArrayList<HomeModel> arrayList, Context context, CheckBoxListnerInterface checkBoxListnerInterface) {
+    public MyPlanAdapter(ArrayList<ActivityModel> arrayList, Context context, CheckBoxListnerInterface checkBoxListnerInterface) {
         this.arrayList = arrayList;
         this.context = context;
         this.checkBoxListnerInterface = checkBoxListnerInterface;
@@ -64,10 +65,13 @@ public class MyPlanAdapter extends RecyclerView.Adapter<MyPlanAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        HomeModel homeModel = arrayList.get(position);
-        holder.cardLayoutBinding.checkbox.setText(homeModel.getCheckBoxTitle());
+        ActivityModel homeModel = arrayList.get(position);
+        holder.cardLayoutBinding.checkbox.setText(homeModel.getServiceName());
         holder.cardLayoutBinding.time.setText(homeModel.getTime());
-        holder.cardLayoutBinding.checkbox.setCompoundDrawablesWithIntrinsicBounds(0,0, homeModel.getCheckBoxIcon(),0);
+        holder.cardLayoutBinding.tvPerson.setText(homeModel.getPersonName());
+        holder.cardLayoutBinding.tvManager.setText(homeModel.getManagerName());
+        holder.cardLayoutBinding.tvDealer.setText(homeModel.getDealName());
+        holder.cardLayoutBinding.checkbox.setCompoundDrawablesWithIntrinsicBounds(0,0, homeModel.getServiceIcon(),0);
 
 
         holder.cardLayoutBinding.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

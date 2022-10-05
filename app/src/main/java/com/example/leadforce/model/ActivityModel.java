@@ -3,7 +3,9 @@ package com.example.leadforce.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ActivityModel implements Parcelable {
+import java.io.Serializable;
+
+public class ActivityModel implements Serializable {
 
     private String serviceName;
     //    private int serviceIcon;
@@ -15,107 +17,86 @@ public class ActivityModel implements Parcelable {
     //    private int dealIcon;
     private String managerName;
 //    private int managerIocn;
+    private int serviceIcon;
+
+    private boolean isFlag;
 
     public ActivityModel() {
+      ;
+    }
+
+    public ActivityModel(String serviceName, String date, String time, String personName, String dealName, String managerName, int serviceIcon, boolean isFlag) {
+        this.serviceName = serviceName;
+        this.date = date;
+        this.time = time;
+        this.personName = personName;
+        this.dealName = dealName;
+        this.managerName = managerName;
+        this.serviceIcon = serviceIcon;
+        this.isFlag = isFlag;
+    }
+
+    public boolean isFlag() {
+        return isFlag;
+    }
+
+    public void setFlag(boolean flag) {
+        isFlag = flag;
     }
 
     public String getServiceName() {
         return serviceName;
     }
 
-    public ActivityModel setServiceName(String serviceName) {
+    public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
-        return this;
     }
 
     public String getDate() {
         return date;
     }
 
-    public ActivityModel setDate(String date) {
+    public void setDate(String date) {
         this.date = date;
-        return this;
     }
 
     public String getTime() {
         return time;
     }
 
-    public ActivityModel setTime(String time) {
+    public void setTime(String time) {
         this.time = time;
-        return this;
     }
 
     public String getPersonName() {
         return personName;
     }
 
-    public ActivityModel setPersonName(String personName) {
+    public void setPersonName(String personName) {
         this.personName = personName;
-        return this;
     }
 
     public String getDealName() {
         return dealName;
     }
 
-    public ActivityModel setDealName(String dealName) {
+    public void setDealName(String dealName) {
         this.dealName = dealName;
-        return this;
     }
 
     public String getManagerName() {
         return managerName;
     }
 
-    public ActivityModel setManagerName(String managerName) {
+    public void setManagerName(String managerName) {
         this.managerName = managerName;
-        return this;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public int getServiceIcon() {
+        return serviceIcon;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.serviceName);
-        dest.writeString(this.date);
-        dest.writeString(this.time);
-        dest.writeString(this.personName);
-        dest.writeString(this.dealName);
-        dest.writeString(this.managerName);
+    public void setServiceIcon(int serviceIcon) {
+        this.serviceIcon = serviceIcon;
     }
-
-    public void readFromParcel(Parcel source) {
-        this.serviceName = source.readString();
-        this.date = source.readString();
-        this.time = source.readString();
-        this.personName = source.readString();
-        this.dealName = source.readString();
-        this.managerName = source.readString();
-    }
-
-    protected ActivityModel(Parcel in) {
-        this.serviceName = in.readString();
-        this.date = in.readString();
-        this.time = in.readString();
-        this.personName = in.readString();
-        this.dealName = in.readString();
-        this.managerName = in.readString();
-    }
-
-    public static final Creator<ActivityModel> CREATOR = new Creator<ActivityModel>() {
-        @Override
-        public ActivityModel createFromParcel(Parcel source) {
-            return new ActivityModel(source);
-        }
-
-        @Override
-        public ActivityModel[] newArray(int size) {
-            return new ActivityModel[size];
-        }
-    };
 }

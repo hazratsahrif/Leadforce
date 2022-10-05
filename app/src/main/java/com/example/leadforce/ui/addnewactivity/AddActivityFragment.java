@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -117,8 +119,14 @@ public class AddActivityFragment extends Fragment {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.setActivityModelMutableLiveData(model);
-                Navigation.findNavController(view).navigateUp();
+                if(binding.btnDate.getText().toString().isEmpty() && binding.btnTime.getText().toString().isEmpty()){
+                    Toast.makeText(getContext(), "Please select date and time", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    viewModel.setActivityModelMutableLiveData(model);
+                    Navigation.findNavController(view).navigateUp();
+                }
+
 
 //                Navigation.findNavController(view).navigate(R.id.action_addActivityFragment_to_navigation_plan);
 //                AddActivityFragmentDirections.ActionAddActivityFragmentToNavigationPlan action = AddActivityFragmentDirections.actionAddActivityFragmentToNavigationPlan(model);
@@ -133,6 +141,7 @@ public class AddActivityFragment extends Fragment {
 //                Toast.makeText(getContext(), model.getServiceName(), Toast.LENGTH_SHORT).show();
             }
         });
+
 
         binding.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -187,68 +196,58 @@ public class AddActivityFragment extends Fragment {
             }
         });
 
-        binding.etPerson.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        binding.etPerson.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                        actionId == EditorInfo.IME_ACTION_DONE ||
-                        event != null &&
-                                event.getAction() == KeyEvent.ACTION_DOWN &&
-                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                ) {
-                    if (event == null || !event.isShiftPressed()) {
-                        // the user is done typing.
-                        model.setPersonName(binding.etPerson.getText().toString());
-                        Toast.makeText(getContext(), "user done" + model.getPersonName(), Toast.LENGTH_SHORT).show();
-                        binding.etPerson.setText("");
-                        return true; // consume.
-                    }
-                }
-                return false; // pass on to other listeners.I
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // the user is done typing.
+                model.setPersonName(binding.etPerson.getText().toString());
+                Toast.makeText(getContext(), "user done" + model.getPersonName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
-        binding.etDeal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                        actionId == EditorInfo.IME_ACTION_DONE ||
-                        event != null &&
-                                event.getAction() == KeyEvent.ACTION_DOWN &&
-                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                ) {
-                    if (event == null || !event.isShiftPressed()) {
-                        // the user is done typing.
-                        Toast.makeText(getContext(), "user done" + binding.etDeal.getText(), Toast.LENGTH_SHORT).show();
-                        model.setDealName(binding.etDeal.getText().toString());
-                        binding.etTag.setText("");
-                        return true; // consume.
-                    }
-                }
-                return false; // pass on to other listeners.I
-            }
-        });
-        binding.etManager.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                        actionId == EditorInfo.IME_ACTION_DONE ||
-                        event != null &&
-                                event.getAction() == KeyEvent.ACTION_DOWN &&
-                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER
-                ) {
-                    if (event == null || !event.isShiftPressed()) {
-                        // the user is done typing.
-                        Toast.makeText(getContext(), "user done" + binding.etManager.getText(), Toast.LENGTH_SHORT).show();
-                        model.setManagerName(binding.etManager.getText().toString());
-                        binding.etTag.setText("");
-                        return true; // consume.
-                    }
-                }
-                return false; // pass on to other listeners.I
-            }
-        });
+   binding.etDeal.addTextChangedListener(new TextWatcher() {
+       @Override
+       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+       }
+
+       @Override
+       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+           Toast.makeText(getContext(), "user done" + binding.etDeal.getText(), Toast.LENGTH_SHORT).show();
+           model.setDealName(binding.etDeal.getText().toString());
+       }
+
+       @Override
+       public void afterTextChanged(Editable editable) {
+
+       }
+   });
+
+        binding.etManager.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Toast.makeText(getContext(), "user done" + binding.etManager.getText(), Toast.LENGTH_SHORT).show();
+                model.setManagerName(binding.etManager.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         return root;
 

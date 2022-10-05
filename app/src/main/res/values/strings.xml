@@ -10,4 +10,7 @@
     <string name="more">More</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="k_venkatakrishnan">K Venkatakrishnan</string>
+    <string name="keertana_facility_management_service_deal">Keertana facility management service deal</string>
+    <string name="keertana_facility_management_service">Keertana facility management service</string>
 </resources>

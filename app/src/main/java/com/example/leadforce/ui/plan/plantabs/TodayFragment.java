@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 public class TodayFragment extends Fragment implements CheckBoxListnerInterface {
     FragmentTodayBinding binding;
-    ArrayList<HomeModel> list;
+    ArrayList<ActivityModel> list;
     MyPlanAdapter adapter;
     FragmentCallBack callBack;
     private SharedViewModel viewModel;
@@ -54,10 +54,33 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
 
         list = new ArrayList<>();
 
-        list.add(new HomeModel("Call", "04:30 P.M", R.drawable.ic_call, false));
-        list.add(new HomeModel("Email", "11:30 P.M", R.drawable.mail, false));
-        list.add(new HomeModel("Task", "04:30 P.M", R.drawable.time_fast, false));
-        list.add(new HomeModel("Direct", "04:30 P.M", R.drawable.visit, false));
+
+        list.add(new ActivityModel("Call","12/2/200","12:30 AM",
+                getResources().getString(R.string.k_venkatakrishnan),
+                getResources().getString(R.string.keertana_facility_management_service),
+                getResources().getString(R.string.keertana_facility_management_service_deal),
+                R.drawable.ic_call,false)
+        );
+        list.add(new ActivityModel("Mial","12/2/200","12:30 AM",
+                getResources().getString(R.string.k_venkatakrishnan),
+                getResources().getString(R.string.keertana_facility_management_service),
+                getResources().getString(R.string.keertana_facility_management_service_deal),
+                R.drawable.mail,false)
+        );
+        list.add(new ActivityModel("Task","12/2/200","12:30 AM",
+                getResources().getString(R.string.k_venkatakrishnan),
+                getResources().getString(R.string.keertana_facility_management_service),
+                getResources().getString(R.string.keertana_facility_management_service_deal),
+                R.drawable.clock,false)
+        );
+        list.add(new ActivityModel("Direct","12/2/200","12:30 AM",
+                getResources().getString(R.string.k_venkatakrishnan),
+                getResources().getString(R.string.keertana_facility_management_service),
+                getResources().getString(R.string.keertana_facility_management_service_deal),
+                R.drawable.visit,false)
+        );
+
+
 //        adapter.setCheckBoxListnerInterface(this);
         adapter = new MyPlanAdapter(list, getContext(), this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,6 +98,17 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
 
         viewModel.getActivityModelMutableLiveData().observe(getViewLifecycleOwner(), (ActivityModel activityModel) -> {
             Log.d(Constants.TAG, "onCreateView: " + activityModel.toString());
+            list.add(new ActivityModel(
+                    activityModel.getServiceName(),
+                    activityModel.getDate(),
+                    activityModel.getTime(),
+                    activityModel.getPersonName(),
+                    activityModel.getManagerName(),
+                    activityModel.getDealName(),
+                    R.drawable.clock,
+                    activityModel.isFlag()
+                    ));
+              adapter.notifyDataSetChanged();
             Toast.makeText(requireContext(), activityModel.toString(), Toast.LENGTH_SHORT).show();
 
         });
