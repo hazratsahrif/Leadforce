@@ -94,11 +94,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tvPerson"
                     android:layout_marginHorizontal="9dp"
-
                     android:drawableStart="@drawable/ic_person"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/k_venkatakrishnan"
                     android:textColor="@color/black_color"
                     android:textSize="12sp" />
 
@@ -132,7 +130,6 @@
                 android:drawablePadding="12dp"
                 android:id="@+id/tvManager"
                 android:fontFamily="@font/inter_medium"
-                android:text="@string/keertana_facility_management_service_deal"
                 android:textColor="@color/black_color"
                 android:textSize="12sp" />
 
@@ -150,7 +147,6 @@
                     android:drawableStart="@drawable/ic_building"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/keertana_facility_management_service"
                     android:textColor="@color/black_color"
                     android:textSize="12sp" />
 

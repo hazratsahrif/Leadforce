@@ -1,8 +1,7 @@
 package com.example.leadforce.ui.plan;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
+
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,36 +13,34 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
+
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.leadforce.MainActivity;
 import com.example.leadforce.R;
 import com.example.leadforce.databinding.FragmentPlanBinding;
 import com.example.leadforce.interfaces.CalendarClickInterface;
 import com.example.leadforce.interfaces.FragmentCallBack;
 import com.example.leadforce.model.ActivityModel;
-import com.example.leadforce.model.SharedModel;
-import com.example.leadforce.model.ToggleEvent;
-import com.example.leadforce.ui.addnewactivity.AddActivityFragment;
 import com.example.leadforce.ui.plan.plantabs.TodayFragment;
 import com.example.leadforce.viewmodel.SharedViewModel;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.tabs.TabLayout;
 
-import org.greenrobot.eventbus.EventBus;
 
-public class PlanFragment extends Fragment implements FragmentCallBack {
+public class PlanFragment extends Fragment implements FragmentCallBack, View.OnClickListener {
 
 
     public PlanFragment() {
     }
 
-    ;
+
     private SharedViewModel viewModel;
 
-    private FragmentPlanBinding binding;
+    FragmentPlanBinding binding;
     TodayFragment todayFragment;
     CalendarClickInterface clickInterface;
     boolean toggle = false;
@@ -116,8 +113,6 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
             @Override
             public void onFocusChange(View arg0, boolean hasfocus) {
                 if (hasfocus) {
-
-                    Toast.makeText(getContext(), "shared model" + viewModel.getText(), Toast.LENGTH_SHORT).show();
                     Log.e("TAG", "e1 focused");
                     binding.editTextBackgroud.setBackgroundResource(R.drawable.blue_rounded_dashes);
                 } else {
@@ -129,14 +124,21 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
         binding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Navigation.findNavController(view).navigate(R.id.action_navigation_plan_to_addActivityFragment);
+                gotoActivityFragmnet(view);
             }
         });
         binding.btnCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                toggle = !toggle;
+                toggle = !toggle;
+                if(toggle){
+                    binding.cvCal.setCardBackgroundColor(getResources().getColor(R.color.blueColor));
+                    binding.btnCal.setColorFilter(getResources().getColor(R.color.white));
+                }
+                else {
+                    binding.cvCal.setCardBackgroundColor(getResources().getColor(R.color.white));
+                    binding.btnCal.setColorFilter(getResources().getColor(R.color.black_color));
+                }
 //                EventBus.getDefault().post(new ToggleEvent(toggle));
                 viewModel.toggleCal();
 
@@ -146,7 +148,52 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
 //                }
             }
         });
+
+
+        binding.fam.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
+            @Override
+            public void onMenuToggle(boolean opened) {
+                if (opened) {
+
+                } else {
+                }
+            }
+        });
+
+        //handling each floating action button clicked
+        binding.fab1.setOnClickListener(this);
+        binding.fab2.setOnClickListener(this);
+        binding.fab3.setOnClickListener(this);
+        binding.fab4.setOnClickListener(this);
+
+
+        binding.fam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.fam.isOpened()) {
+                    binding.fam.close(true);
+                }
+            }
+        });
+
+//
+//    private View.OnClickListener onButtonClick() {
+//        return new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//        };
+//    }
+
+
         return root;
+    }
+
+    private void gotoActivityFragmnet(View view) {
+        ActivityModel model = new ActivityModel();
+        PlanFragmentDirections.ActionNavigationPlanToAddActivityFragment action =
+                PlanFragmentDirections.actionNavigationPlanToAddActivityFragment(model);
+        Navigation.findNavController(view).navigate(action);
     }
 
     @Override
@@ -199,4 +246,29 @@ public class PlanFragment extends Fragment implements FragmentCallBack {
         }
     }
 
+    @Override
+    public void onAdapterListener(ActivityModel activityModel) {
+
+       PlanFragmentDirections.ActionNavigationPlanToAddActivityFragment action= PlanFragmentDirections.actionNavigationPlanToAddActivityFragment(activityModel);
+       Navigation.findNavController(getView()).navigate(action);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == binding.fab1) {
+            gotoActivityFragmnet(view);
+
+        } else if (view == binding.fab2) {
+            //do nothing
+        } else  if (view == binding.fab3){
+            //do nothing
+        }
+        else {
+            //do nothing
+        }
+        binding.fam.close(true);
+
+    }
 }

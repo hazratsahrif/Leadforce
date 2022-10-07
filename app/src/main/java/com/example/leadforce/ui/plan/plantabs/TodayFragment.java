@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,29 +19,27 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.leadforce.R;
 import com.example.leadforce.adpater.MyPlanAdapter;
 import com.example.leadforce.databinding.FragmentTodayBinding;
-import com.example.leadforce.interfaces.CalendarClickInterface;
+
 import com.example.leadforce.interfaces.CheckBoxListnerInterface;
 import com.example.leadforce.interfaces.FragmentCallBack;
 import com.example.leadforce.model.ActivityModel;
-import com.example.leadforce.model.HomeModel;
-import com.example.leadforce.model.ToggleEvent;
-import com.example.leadforce.ui.addnewactivity.AddActivityFragment;
+
 import com.example.leadforce.ui.plan.PlanFragment;
+import com.example.leadforce.ui.plan.PlanFragmentDirections;
 import com.example.leadforce.utils.Constants;
 import com.example.leadforce.viewmodel.SharedViewModel;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
 
-public class TodayFragment extends Fragment implements CheckBoxListnerInterface {
+public class TodayFragment extends Fragment implements CheckBoxListnerInterface,MyPlanAdapter.OnAdapterClick {
     FragmentTodayBinding binding;
     ArrayList<ActivityModel> list;
     MyPlanAdapter adapter;
     FragmentCallBack callBack;
+    int adapterPosition=0;
+    boolean isUpdate=false;
     private SharedViewModel viewModel;
 
     public TodayFragment(FragmentCallBack callBack) {
@@ -88,7 +87,7 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
 
 
 //        adapter.setCheckBoxListnerInterface(this);
-        adapter = new MyPlanAdapter(list, getContext(), this);
+        adapter = new MyPlanAdapter(list, getContext(), this,this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(adapter);
 
@@ -104,17 +103,34 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
 
         viewModel.getActivityModelMutableLiveData().observe(getViewLifecycleOwner(), (ActivityModel activityModel) -> {
             Log.d(Constants.TAG, "onCreateView: " + activityModel.toString());
-            list.add(new ActivityModel(
-                    activityModel.getServiceName(),
-                    activityModel.getDate(),
-                    activityModel.getTime(),
-                    activityModel.getPersonName(),
-                    activityModel.getManagerName(),
-                    activityModel.getDealName(),
-                    R.drawable.clock,
-                    activityModel.isFlag()
-            ));
+            if(isUpdate){
+               list.set(adapterPosition,new ActivityModel(
+                       activityModel.getServiceName(),
+                       activityModel.getDate(),
+                       activityModel.getTime(),
+                       activityModel.getPersonName(),
+                       activityModel.getManagerName(),
+                       activityModel.getDealName(),
+                       activityModel.getServiceIcon(),
+                       activityModel.isFlag()));
+            }
+            else {
+                list.add(new ActivityModel(
+                        activityModel.getServiceName(),
+                        activityModel.getDate(),
+                        activityModel.getTime(),
+                        activityModel.getPersonName(),
+                        activityModel.getManagerName(),
+                        activityModel.getDealName(),
+                        activityModel.getServiceIcon(),
+                        activityModel.isFlag()
+                ));
+            }
+
             adapter.notifyDataSetChanged();
+
+
+
             Toast.makeText(requireContext(), activityModel.toString(), Toast.LENGTH_SHORT).show();
 
         });
@@ -134,23 +150,6 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
         adapter.notifyDataSetChanged();
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ToggleEvent event) {
-//        Toast.makeText(getActivity(), event.message, Toast.LENGTH_SHORT).show();
-        toggleItem(event.value);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
 
     @Override
     public void onCheckBoxClick(boolean isCheck) {
@@ -161,4 +160,14 @@ public class TodayFragment extends Fragment implements CheckBoxListnerInterface 
     }
 
 
+    @Override
+    public void onClick(ActivityModel homeList, int position,boolean isUpdate) {
+        callBack.onAdapterListener(homeList);
+        adapterPosition = position;
+        this.isUpdate = isUpdate;
+
+
+
+
+    }
 }

@@ -1,7 +1,5 @@
 package com.example.leadforce.ui.plan;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,10 +29,10 @@ public class PlanViewPagerAdapter extends FragmentStateAdapter {
             return new TodayFragment(mContext);
         }
         else if(position==1){
-            return new TomorrowFragment();
+            return new TomorrowFragment(mContext);
 
         }
-        return new MonthFragment();
+        return new MonthFragment(mContext);
     }
 
     @Override

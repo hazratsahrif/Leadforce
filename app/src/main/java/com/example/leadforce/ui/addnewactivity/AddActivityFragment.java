@@ -1,5 +1,6 @@
 package com.example.leadforce.ui.addnewactivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.res.ColorStateList;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,8 +18,12 @@ import androidx.navigation.Navigation;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -25,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,6 +46,7 @@ import com.example.leadforce.model.ActivityModel;
 import com.example.leadforce.model.SharedModel;
 import com.example.leadforce.ui.addnewactivity.invertory.Data;
 import com.example.leadforce.ui.addnewactivity.invertory.ItemModel;
+import com.example.leadforce.utils.Constants;
 import com.example.leadforce.viewmodel.SharedViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
@@ -50,10 +59,13 @@ import java.util.List;
 public class AddActivityFragment extends Fragment {
     FragmentAddActivityBinding binding;
     SharedViewModel viewModel;
+    MenuBuilder menuBuilder;
+    MenuInflater menuInflater ;
 
     private Spinner spinner;
     private SpinnerAdapter adapter;
     DatePickerDialog datePickerDialog;
+    ActivityModel updateModel;
     ActivityModel model;
     String date = "";
     String time = "";
@@ -71,6 +83,8 @@ public class AddActivityFragment extends Fragment {
             "Arjun",
     };
 
+
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,9 +92,13 @@ public class AddActivityFragment extends Fragment {
         binding = FragmentAddActivityBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         spinner = binding.spinner;
+        updateModel = new ActivityModel();
         adapter = new SpinnerAdapter(getContext(), Data.getItem());
         spinner.setAdapter(adapter);
         model = new ActivityModel();
+         menuBuilder = new MenuBuilder(getContext());
+         menuInflater = new MenuInflater(getContext());
+         menuInflater.inflate(R.menu.toolbar_mneu,menuBuilder);
 
 
         setSpinnerAdapter(list, binding.spinnerPriority);
@@ -104,6 +122,12 @@ public class AddActivityFragment extends Fragment {
                     case 2:
                         model.setServiceIcon(Data.getItem().get(position).getIcon());
                         model.setServiceName(Data.getItem().get(position).getName());
+
+                        break;
+                    case 3:
+                        model.setServiceIcon(Data.getItem().get(position).getIcon());
+                        model.setServiceName(Data.getItem().get(position).getName());
+
                         break;
 
                 }
@@ -115,6 +139,40 @@ public class AddActivityFragment extends Fragment {
 
             }
         });
+        binding.btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuPopupHelper optionMenu =
+                new MenuPopupHelper(getContext(),menuBuilder,view);
+                optionMenu.setForceShowIcon(true);
+                menuBuilder.setCallback(new MenuBuilder.Callback() {
+                    @Override
+                    public boolean onMenuItemSelected(@NonNull MenuBuilder menu, @NonNull MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.delete_action:
+                                Toast.makeText(getContext(), "You click delete", Toast.LENGTH_SHORT).show();
+                             return  true;
+                            default:
+                                return false;
+
+                        }
+                    }
+
+                    @Override
+                    public void onMenuModeChange(@NonNull MenuBuilder menu) {
+
+                    }
+                });
+                optionMenu.show();
+            }
+
+        });
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigateUp();
+            }
+        });
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,24 +182,12 @@ public class AddActivityFragment extends Fragment {
                 }
                 else {
                     viewModel.setActivityModelMutableLiveData(model);
+                    Log.d("TAG","MSG"+model.toString());
                     Navigation.findNavController(view).navigateUp();
                 }
 
-
-//                Navigation.findNavController(view).navigate(R.id.action_addActivityFragment_to_navigation_plan);
-//                AddActivityFragmentDirections.ActionAddActivityFragmentToNavigationPlan action = AddActivityFragmentDirections.actionAddActivityFragmentToNavigationPlan(model);
-//                  Navigation.findNavController(view).navigate(action);
-//                  Navigation.findNavController(view).navigate(R.id.action_navigation_plan_to_addActivityFragment);
-
-//                Toast.makeText(getContext(), model.getDate(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), model.getTime(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), model.getPersonName(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), model.getManagerName(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), model.getDealName(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getContext(), model.getServiceName(), Toast.LENGTH_SHORT).show();
             }
         });
-
 
         binding.checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -158,7 +204,6 @@ public class AddActivityFragment extends Fragment {
                 }
             }
         });
-
         binding.etTag.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
@@ -170,7 +215,7 @@ public class AddActivityFragment extends Fragment {
                 ) {
                     if (event == null || !event.isShiftPressed()) {
                         // the user is done typing.
-                        Toast.makeText(getContext(), "user done" + binding.etTag.getText(), Toast.LENGTH_SHORT).show();
+
                         setChip(binding.etTag.getText().toString());
                         binding.etTag.setText("");
                         return true; // consume.
@@ -186,8 +231,6 @@ public class AddActivityFragment extends Fragment {
 
             }
         });
-
-
         binding.btnTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,7 +238,6 @@ public class AddActivityFragment extends Fragment {
 //                model.setTime(time);
             }
         });
-
         binding.etPerson.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -204,7 +246,7 @@ public class AddActivityFragment extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // the user is done typing.
                 model.setPersonName(binding.etPerson.getText().toString());
-                Toast.makeText(getContext(), "user done" + model.getPersonName(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -212,8 +254,7 @@ public class AddActivityFragment extends Fragment {
 
             }
         });
-
-   binding.etDeal.addTextChangedListener(new TextWatcher() {
+        binding.etDeal.addTextChangedListener(new TextWatcher() {
        @Override
        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -221,7 +262,7 @@ public class AddActivityFragment extends Fragment {
 
        @Override
        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-           Toast.makeText(getContext(), "user done" + binding.etDeal.getText(), Toast.LENGTH_SHORT).show();
+
            model.setDealName(binding.etDeal.getText().toString());
        }
 
@@ -230,7 +271,6 @@ public class AddActivityFragment extends Fragment {
 
        }
    });
-
         binding.etManager.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -239,7 +279,6 @@ public class AddActivityFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Toast.makeText(getContext(), "user done" + binding.etManager.getText(), Toast.LENGTH_SHORT).show();
                 model.setManagerName(binding.etManager.getText().toString());
             }
 
@@ -253,14 +292,32 @@ public class AddActivityFragment extends Fragment {
 
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // The ViewModel is scoped to the parent of `this` Fragment
         viewModel = new ViewModelProvider(requireActivity())
                 .get(SharedViewModel.class);
+        if(getArguments() != null){
+            AddActivityFragmentArgs args =  AddActivityFragmentArgs.fromBundle(getArguments());
+            updateModel = args.getActionModel();
+            if (updateModel.getManagerName()==null){
 
+                binding.toolbarText.setText("Add Activity");
+                binding.btnSave.setText("Save");
+                binding.btnMore.setVisibility(View.GONE);
+
+            }
+            else {
+                binding.btnDate.setText(updateModel.getDate());
+                binding.btnTime.setText(updateModel.getTime());
+                binding.etPerson.setText(updateModel.getPersonName());
+                binding.etDeal.setText(updateModel.getDealName());
+                binding.etManager.setText(updateModel.getManagerName());
+                binding.toolbarText.setText("Edit Activity");
+                binding.btnSave.setText("Edit");
+                binding.btnMore.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     private String getDate() {
@@ -283,7 +340,6 @@ public class AddActivityFragment extends Fragment {
                         date = dayOfMonth + "/"
                                 + (monthOfYear + 1) + "/" + year;
                         model.setDate(date);
-                        Toast.makeText(getContext(), model.getDate(), Toast.LENGTH_SHORT).show();
 
                     }
                 }, mYear, mMonth, mDay);
@@ -341,7 +397,6 @@ public class AddActivityFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 binding.chipGroup.removeView(chip);
-                Toast.makeText(getContext(), chip.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
         binding.chipGroup.addView(chip);

@@ -13,7 +13,9 @@
         <entry key="app/src/main/res/drawable/drop_arrow.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/dropdown_outline.xml" value="0.375" />
         <entry key="app/src/main/res/drawable/green_rounded_dashes.xml" value="0.212" />
+        <entry key="app/src/main/res/drawable/hands_tab.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_call.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_hands.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_simple_logo.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/keyboard_arrow_down.xml" value="0.262" />
         <entry key="app/src/main/res/drawable/vertical_line.xml" value="0.212" />
@@ -27,12 +29,12 @@
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.21041666666666667" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_info.xml" value="0.21041666666666667" />
-        <entry key="app/src/main/res/layout/fragment_month.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/fragment_month.xml" value="0.13656387665198239" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.21041666666666667" />
-        <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/fragment_plan.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/fragment_today.xml" value="0.21041666666666667" />
-        <entry key="app/src/main/res/layout/fragment_tomorrow.xml" value="0.21041666666666667" />
+        <entry key="app/src/main/res/layout/fragment_tomorrow.xml" value="0.1" />
         <entry key="app/src/main/res/layout/my_selected_tem.xml" value="0.2111111111111111" />
         <entry key="app/src/main/res/layout/signup_fragment.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.22037037037037038" />
@@ -40,6 +42,7 @@
         <entry key="app/src/main/res/layout/tag_layout.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/vertical_line.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.25625" />
+        <entry key="app/src/main/res/menu/toolbar_mneu.xml" value="0.2484375" />
       </map>
     </option>
   </component>

@@ -21,6 +21,7 @@ public class ActivityModel implements Serializable {
 
     private boolean isFlag;
 
+
     public ActivityModel() {
       ;
     }

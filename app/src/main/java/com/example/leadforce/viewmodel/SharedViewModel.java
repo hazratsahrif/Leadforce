@@ -14,12 +14,15 @@ public class SharedViewModel extends ViewModel {
 
     private MutableLiveData<ActivityModel> activityModelMutableLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<Integer> getIsCheck() {
-        return isCheck;
+
+    private MutableLiveData<Integer> position = new MutableLiveData<>(0);
+
+    public LiveData<Integer> getPosition() {
+        return position;
     }
 
-    public void setIsCheck(MutableLiveData<Integer> isCheck) {
-        this.isCheck = isCheck;
+    public void setPosition(Integer position) {
+        this.setPosition(position);
     }
 
     public void setText(String input) {

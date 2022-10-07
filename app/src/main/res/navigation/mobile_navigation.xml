@@ -10,12 +10,11 @@
         android:name="com.example.leadforce.ui.plan.PlanFragment"
         android:label="@string/plan"
         tools:layout="@layout/fragment_plan" >
+
+
         <action
-            app:launchSingleTop="false"
-            app:popUpToInclusive="false"
             android:id="@+id/action_navigation_plan_to_addActivityFragment"
             app:destination="@id/addActivityFragment" />
-
     </fragment>
 
     <fragment
